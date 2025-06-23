@@ -13,7 +13,7 @@ def test_1():
     assert network.next_network_id == "192.168.160.0"
 
 def test_2():
-        network = Network("192.168.156.3", "/24")
+    network = Network("192.168.156.3", "/24")
 
     assert network.network_id == "192.168.156.0"
     assert network.mask == "/24"
