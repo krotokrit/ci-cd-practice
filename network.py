@@ -52,8 +52,8 @@ class Network:
     def prefix_to_binary(self, mask: int):
         binary_mask = '1' * mask + '0' * (32 - mask)
         parts = [binary_mask[i:i+8] for i in range(0, 32, 8)]
-        self.binary_mask = ".".join(parts)  # dotted string format
-        return parts  # return parts list
+        self.binary_mask = ".".join(parts)
+        return parts
 
 
     def get_network_id(self, binary_prefix_parts, binary_ip_parts):
@@ -107,7 +107,6 @@ class Network:
 
         self.network_id = ".".join(str(i) for i in decimal_network_id)
 
-        # Set binary versions of addresses
         broadcast_parts = self.get_broadcast_ip(binary_network_id, int(mask_prefix[1:])).split(".")
         self.broadcast_ip = ".".join(broadcast_parts)
 
@@ -127,15 +126,3 @@ class Network:
         self.next_network_id = self.binary_parts_to_decimal_ip(next_network_parts)
 
         return binary_network_id
-
-
-# Example use
-network = Network("192.168.156.3", "/21")
-print("Network ID:", network.network_id)
-print("Mask prefix:", network.mask)
-print("Binary Mask:", network.binary_mask)
-print("Broadcast IP:", network.broadcast_ip)
-print("First Host IP:", network.first_host_ip)
-print("Last Host IP:", network.last_host_ip)
-print("Number of Hosts:", network.number_of_hosts)
-print("Next Network ID:", network.next_network_id)
